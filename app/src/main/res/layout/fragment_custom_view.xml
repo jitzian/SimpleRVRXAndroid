@@ -21,4 +21,17 @@
         custom:title="my time view"
         custom:setColor="true"/>
 
+    <examples.android.md.rx.rv.com.org.simplervrx.custom.view.CustomButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/mButtonCustom"
+        android:text="Click Me"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/button"
+        android:id="@+id/mCustomStyleButton"
+        android:text="Click MEe"/>
+
 </LinearLayout>
