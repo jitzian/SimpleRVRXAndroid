@@ -1,0 +1,24 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    tools:context="examples.android.md.rx.rv.com.org.simplervrx.fragments.CustomViewFragment"
+    android:orientation="vertical">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/hello_blank_fragment" />
+
+    <examples.android.md.rx.rv.com.org.simplervrx.custom.view.TimeView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/timeView"
+        android:textColor="#fff"
+        android:textSize="40sp"
+        custom:title="my time view"
+        custom:setColor="true"/>
+
+</LinearLayout>

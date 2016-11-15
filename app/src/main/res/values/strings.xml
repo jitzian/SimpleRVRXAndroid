@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">SimpleRVRX</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_search">Search</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+
+    <string name="nav_item_home">Home</string>
+    <string name="nav_item_friends">RecyclerView with Retrofit</string>
+    <string name="nav_item_notifications">Messages</string>
+    <string name="nav_item_data_binding">Retrofit with RX Android</string>
+    <string name="nav_item_web_view">WebView</string>
+    <string name="nav_item_async_task">AsyncTask</string>
+    <string name="nav_item_event_bus">Event Bus</string>
+    <string name="nav_item_behavior">Behavior</string>
+    <string name="nav_item_parent_fragment">EventBus Fragments</string>
+    <string name="nav_item_custom_view">Custom View</string>
+
+    <!-- navigation drawer item labels  -->
+    <string-array name="nav_drawer_labels">
+        <item>@string/nav_item_home</item>
+        <item>@string/nav_item_friends</item>
+        <item>@string/nav_item_notifications</item>
+        <item>@string/nav_item_data_binding</item>
+        <item>@string/nav_item_web_view</item>
+        <item>@string/nav_item_async_task</item>
+        <item>@string/nav_item_event_bus</item>
+        <item>@string/nav_item_behavior</item>
+        <item>@string/nav_item_parent_fragment</item>
+        <item>@string/nav_item_custom_view</item>
+    </string-array>
+
+    <string name="title_messages">Messages</string>
+    <string name="title_friends">Friends</string>
+    <string name="title_posts">Posts</string>
+    <string name="title_home">Home</string>
+    <string name="title_data_binding">Data Binding</string>
+    <string name="title_rx_android">Retrofit with RX Android</string>
+    <string name="title_web_view">WebView</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment_1">Hello blank fragment_1</string>
+    <string name="hello_blank_fragment_2">Hello blank fragment_2</string>
+
+</resources>
