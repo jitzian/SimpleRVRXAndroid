@@ -29,6 +29,7 @@ import examples.android.md.rx.rv.com.org.simplervrx.fragments.ParentFragment;
 import examples.android.md.rx.rv.com.org.simplervrx.fragments.PostFragment;
 import examples.android.md.rx.rv.com.org.simplervrx.fragments.HomeFragment;
 import examples.android.md.rx.rv.com.org.simplervrx.fragments.MessagesFragment;
+import examples.android.md.rx.rv.com.org.simplervrx.fragments.RVSwipeFragment;
 import examples.android.md.rx.rv.com.org.simplervrx.fragments.RxFragment;
 import examples.android.md.rx.rv.com.org.simplervrx.fragments.WebViewFragment;
 import examples.android.md.rx.rv.com.org.simplervrx.model.Result;
@@ -133,6 +134,10 @@ public class MainActivity extends AppCompatActivity
             case 9:
                 fragment = new CustomViewFragment();
                 title = "Custom View";
+                break;
+            case 10:
+                fragment = new RVSwipeFragment();
+                title = "Recycler View with Swiping Functionality";
                 break;
             default:
                 break;

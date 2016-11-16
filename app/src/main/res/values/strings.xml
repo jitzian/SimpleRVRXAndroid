@@ -15,6 +15,8 @@
     <string name="nav_item_behavior">Behavior</string>
     <string name="nav_item_parent_fragment">EventBus Fragments</string>
     <string name="nav_item_custom_view">Custom View</string>
+    <string name="nav_item_rv_swipe">Swype Recycler View</string>
+
 
     <!-- navigation drawer item labels  -->
     <string-array name="nav_drawer_labels">
@@ -28,6 +30,7 @@
         <item>@string/nav_item_behavior</item>
         <item>@string/nav_item_parent_fragment</item>
         <item>@string/nav_item_custom_view</item>
+        <item>@string/nav_item_rv_swipe</item>
     </string-array>
 
     <string name="title_messages">Messages</string>
@@ -42,5 +45,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="hello_blank_fragment_1">Hello blank fragment_1</string>
     <string name="hello_blank_fragment_2">Hello blank fragment_2</string>
+    <string name="button_undo">undo</string>
 
 </resources>
