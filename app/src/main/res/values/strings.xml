@@ -16,6 +16,7 @@
     <string name="nav_item_parent_fragment">EventBus Fragments</string>
     <string name="nav_item_custom_view">Custom View</string>
     <string name="nav_item_rv_swipe">Swype Recycler View</string>
+    <string name="nav_item_bottom_sheet">Bottom Sheet</string>
 
 
     <!-- navigation drawer item labels  -->
@@ -31,6 +32,7 @@
         <item>@string/nav_item_parent_fragment</item>
         <item>@string/nav_item_custom_view</item>
         <item>@string/nav_item_rv_swipe</item>
+        <item>@string/nav_item_bottom_sheet</item>
     </string-array>
 
     <string name="title_messages">Messages</string>

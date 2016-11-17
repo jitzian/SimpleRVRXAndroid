@@ -21,6 +21,7 @@ import java.net.URL;
 import examples.android.md.rx.rv.com.org.simplervrx.eventBus.ResultEvent;
 import examples.android.md.rx.rv.com.org.simplervrx.fragments.AsyncTaskFragment;
 import examples.android.md.rx.rv.com.org.simplervrx.fragments.BehaviorFragment;
+import examples.android.md.rx.rv.com.org.simplervrx.fragments.BottomSheetFragment;
 import examples.android.md.rx.rv.com.org.simplervrx.fragments.CustomViewFragment;
 import examples.android.md.rx.rv.com.org.simplervrx.fragments.DetailGithubFragment;
 import examples.android.md.rx.rv.com.org.simplervrx.fragments.EventBusFragment;
@@ -138,6 +139,10 @@ public class MainActivity extends AppCompatActivity
             case 10:
                 fragment = new RVSwipeFragment();
                 title = "Recycler View with Swiping Functionality";
+                break;
+            case 11:
+                fragment = new BottomSheetFragment();
+                title = "Bottom Sheet";
                 break;
             default:
                 break;
