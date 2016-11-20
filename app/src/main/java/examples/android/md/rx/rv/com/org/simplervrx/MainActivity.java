@@ -18,6 +18,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import examples.android.md.rx.rv.com.org.simplervrx.MVP.view.SimpleMVPFragment;
 import examples.android.md.rx.rv.com.org.simplervrx.eventBus.ResultEvent;
 import examples.android.md.rx.rv.com.org.simplervrx.fragments.AsyncTaskFragment;
 import examples.android.md.rx.rv.com.org.simplervrx.fragments.BehaviorFragment;
@@ -32,6 +33,7 @@ import examples.android.md.rx.rv.com.org.simplervrx.fragments.HomeFragment;
 import examples.android.md.rx.rv.com.org.simplervrx.fragments.MessagesFragment;
 import examples.android.md.rx.rv.com.org.simplervrx.fragments.RVSwipeFragment;
 import examples.android.md.rx.rv.com.org.simplervrx.fragments.RxFragment;
+import examples.android.md.rx.rv.com.org.simplervrx.fragments.StuffFragment;
 import examples.android.md.rx.rv.com.org.simplervrx.fragments.WebViewFragment;
 import examples.android.md.rx.rv.com.org.simplervrx.model.Result;
 
@@ -143,6 +145,14 @@ public class MainActivity extends AppCompatActivity
             case 11:
                 fragment = new BottomSheetFragment();
                 title = "Bottom Sheet";
+                break;
+            case 12:
+                fragment = new StuffFragment();
+                title = "Stuff..";
+                break;
+            case 13:
+                fragment = new SimpleMVPFragment();
+                title = "MVP";
                 break;
             default:
                 break;

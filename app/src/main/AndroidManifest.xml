@@ -36,6 +36,10 @@
             android:enabled="true"
             android:exported="true"/>
 
+        <service android:name=".services.DummyService2"
+            android:enabled="true"
+            android:exported="true"/>
+
     </application>
 
 </manifest>

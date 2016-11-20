@@ -17,6 +17,8 @@
     <string name="nav_item_custom_view">Custom View</string>
     <string name="nav_item_rv_swipe">Swype Recycler View</string>
     <string name="nav_item_bottom_sheet">Bottom Sheet</string>
+    <string name="nav_item_stuff">Stuff</string>
+    <string name="nav_item_mpv">MVP</string>
 
 
     <!-- navigation drawer item labels  -->
@@ -33,6 +35,8 @@
         <item>@string/nav_item_custom_view</item>
         <item>@string/nav_item_rv_swipe</item>
         <item>@string/nav_item_bottom_sheet</item>
+        <item>@string/nav_item_stuff</item>
+        <item>@string/nav_item_mpv</item>
     </string-array>
 
     <string name="title_messages">Messages</string>
