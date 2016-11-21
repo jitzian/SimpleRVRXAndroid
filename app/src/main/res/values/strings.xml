@@ -19,6 +19,7 @@
     <string name="nav_item_bottom_sheet">Bottom Sheet</string>
     <string name="nav_item_stuff">Stuff</string>
     <string name="nav_item_mpv">MVP</string>
+    <string name="nav_item_rv_behavior_fragment">RV Detail Behavior</string>
 
 
     <!-- navigation drawer item labels  -->
@@ -37,6 +38,7 @@
         <item>@string/nav_item_bottom_sheet</item>
         <item>@string/nav_item_stuff</item>
         <item>@string/nav_item_mpv</item>
+        <item>@string/nav_item_rv_behavior_fragment</item>
     </string-array>
 
     <string name="title_messages">Messages</string>
@@ -52,5 +54,12 @@
     <string name="hello_blank_fragment_1">Hello blank fragment_1</string>
     <string name="hello_blank_fragment_2">Hello blank fragment_2</string>
     <string name="button_undo">undo</string>
+
+
+    <string name="cheese_ipsum">Jarlsberg lancashire edam. Dolcelatte hard cheese brie st. agur blue
+    cheese caerphilly bavarian bergkase cheese and biscuits mascarpone. Cheeseburger swiss bavarian
+    bergkase cream cheese fromage frais cheesy feet port-salut airedale. St. agur blue cheese rubber
+    cheese caerphilly cheddar cheesecake cream cheese manchego lancashire. Roquefort squirty cheese
+    the big cheese.</string>
 
 </resources>

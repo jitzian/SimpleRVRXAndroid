@@ -31,6 +31,7 @@ import examples.android.md.rx.rv.com.org.simplervrx.fragments.ParentFragment;
 import examples.android.md.rx.rv.com.org.simplervrx.fragments.PostFragment;
 import examples.android.md.rx.rv.com.org.simplervrx.fragments.HomeFragment;
 import examples.android.md.rx.rv.com.org.simplervrx.fragments.MessagesFragment;
+import examples.android.md.rx.rv.com.org.simplervrx.fragments.RVBehaviorFragment;
 import examples.android.md.rx.rv.com.org.simplervrx.fragments.RVSwipeFragment;
 import examples.android.md.rx.rv.com.org.simplervrx.fragments.RxFragment;
 import examples.android.md.rx.rv.com.org.simplervrx.fragments.StuffFragment;
@@ -153,6 +154,10 @@ public class MainActivity extends AppCompatActivity
             case 13:
                 fragment = new SimpleMVPFragment();
                 title = "MVP";
+                break;
+            case 14:
+                fragment = new RVBehaviorFragment();
+                title = "RV Detail Behavior";
                 break;
             default:
                 break;
