@@ -3,6 +3,8 @@ package examples.android.md.rx.rv.com.org.simplervrx.rx;
 import java.util.List;
 
 import rx.Observable;
+import rx.Observer;
+import rx.functions.Func1;
 
 /**
  * Created by User on 11/13/2016.
@@ -10,14 +12,36 @@ import rx.Observable;
 
 public class RXSample1 {
 
-    public static Observable<List<String>>getEnhancedList(List<String>lstString){
+    public static void main(String[] args) {
 
-        for(int i = 0; i < lstString.size(); i ++){
-            String temp = lstString.get(i) + "ENHANCED";
-            lstString.remove(i);
-            lstString.add(temp);
-        }
-        return (Observable<List<String>>) lstString;
+        String stringObservable = "My String";
+
+        Observable<String>myObservableString1 = Observable.from(new String[]{stringObservable})
+                .map(new Func1<String, String>() {
+                    @Override
+                    public String call(String s) {
+                        return s + "..";
+                    }
+                });
+
+        Observer<String> myObserverString1 = new Observer<String>() {
+            @Override
+            public void onCompleted() {
+                System.out.println("onCompleted");
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                System.out.println("onError::" + e.getMessage());
+            }
+
+            @Override
+            public void onNext(String s) {
+                System.out.println("onNext::" + s);
+            }
+        };
+
+        myObservableString1.subscribe(myObserverString1);
 
     }
 

@@ -20,6 +20,9 @@
     <string name="nav_item_stuff">Stuff</string>
     <string name="nav_item_mpv">MVP</string>
     <string name="nav_item_rv_behavior_fragment">RV Detail Behavior</string>
+    <string name="nav_item_instance_state_fragment">Instance State</string>
+    <string name="nav_item_retro_lambda">Retrolambda</string>
+    <string name="nav_item_music">Music</string>
 
 
     <!-- navigation drawer item labels  -->
@@ -39,6 +42,9 @@
         <item>@string/nav_item_stuff</item>
         <item>@string/nav_item_mpv</item>
         <item>@string/nav_item_rv_behavior_fragment</item>
+        <item>@string/nav_item_instance_state_fragment</item>
+        <item>@string/nav_item_retro_lambda</item>
+        <item>@string/nav_item_music</item>
     </string-array>
 
     <string name="title_messages">Messages</string>
@@ -61,5 +67,6 @@
     bergkase cream cheese fromage frais cheesy feet port-salut airedale. St. agur blue cheese rubber
     cheese caerphilly cheddar cheesecake cream cheese manchego lancashire. Roquefort squirty cheese
     the big cheese.</string>
+    <string name="search_artist">Type an Artist</string>
 
 </resources>

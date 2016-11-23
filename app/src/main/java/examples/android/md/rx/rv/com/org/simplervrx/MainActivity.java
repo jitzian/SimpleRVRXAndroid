@@ -1,6 +1,9 @@
 package examples.android.md.rx.rv.com.org.simplervrx;
 
 import android.net.Uri;
+import android.os.Build;
+import android.os.PersistableBundle;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -20,6 +24,7 @@ import java.net.URL;
 
 import examples.android.md.rx.rv.com.org.simplervrx.MVP.view.SimpleMVPFragment;
 import examples.android.md.rx.rv.com.org.simplervrx.eventBus.ResultEvent;
+import examples.android.md.rx.rv.com.org.simplervrx.fragments.ArtistSearchFragment;
 import examples.android.md.rx.rv.com.org.simplervrx.fragments.AsyncTaskFragment;
 import examples.android.md.rx.rv.com.org.simplervrx.fragments.BehaviorFragment;
 import examples.android.md.rx.rv.com.org.simplervrx.fragments.BottomSheetFragment;
@@ -27,12 +32,14 @@ import examples.android.md.rx.rv.com.org.simplervrx.fragments.CustomViewFragment
 import examples.android.md.rx.rv.com.org.simplervrx.fragments.DetailGithubFragment;
 import examples.android.md.rx.rv.com.org.simplervrx.fragments.EventBusFragment;
 import examples.android.md.rx.rv.com.org.simplervrx.fragments.FragmentDrawer;
+import examples.android.md.rx.rv.com.org.simplervrx.fragments.InstanceStateFragment;
 import examples.android.md.rx.rv.com.org.simplervrx.fragments.ParentFragment;
 import examples.android.md.rx.rv.com.org.simplervrx.fragments.PostFragment;
 import examples.android.md.rx.rv.com.org.simplervrx.fragments.HomeFragment;
 import examples.android.md.rx.rv.com.org.simplervrx.fragments.MessagesFragment;
 import examples.android.md.rx.rv.com.org.simplervrx.fragments.RVBehaviorFragment;
 import examples.android.md.rx.rv.com.org.simplervrx.fragments.RVSwipeFragment;
+import examples.android.md.rx.rv.com.org.simplervrx.fragments.RetroLambdaFragment;
 import examples.android.md.rx.rv.com.org.simplervrx.fragments.RxFragment;
 import examples.android.md.rx.rv.com.org.simplervrx.fragments.StuffFragment;
 import examples.android.md.rx.rv.com.org.simplervrx.fragments.WebViewFragment;
@@ -42,7 +49,7 @@ public class MainActivity extends AppCompatActivity
         implements FragmentDrawer.FragmentDrawerListener,
         WebViewFragment.OnFragmentInteractionListener,
         BehaviorFragment.OnFragmentInteractionListener{
-    private static final String TAG = MainActivity.class.getName();
+    private static final String TAG = MainActivity.class.getSimpleName();
     private Toolbar mToolbar;
     private FragmentDrawer drawerFragment;
 
@@ -94,9 +101,10 @@ public class MainActivity extends AppCompatActivity
         displayView(position);
     }
 
+    private Fragment fragment = null;
     private void displayView(int position) {
         Log.d(TAG, "displayView");
-        Fragment fragment = null;
+//        Fragment fragment = null;
         String title = getString(R.string.app_name);
         switch (position) {
             case 0:
@@ -159,6 +167,18 @@ public class MainActivity extends AppCompatActivity
                 fragment = new RVBehaviorFragment();
                 title = "RV Detail Behavior";
                 break;
+            case 15:
+                fragment = new InstanceStateFragment();
+                title = "Instance State";
+                break;
+            case 16:
+                fragment = new RetroLambdaFragment();
+                title = "Retro lambda";
+                break;
+            case 17:
+                fragment = new ArtistSearchFragment();
+                title = "Music";
+                break;
             default:
                 break;
         }
@@ -169,6 +189,7 @@ public class MainActivity extends AppCompatActivity
                     .beginTransaction()
                     .replace(R.id.container_body, fragment, fragment.getClass().getSimpleName())
                     .commit();
+            Log.d(TAG, "--------------------" + fragment.getTag() + "--------------------");
             // set the toolbar title
             getSupportActionBar().setTitle(title);
         }
@@ -180,11 +201,20 @@ public class MainActivity extends AppCompatActivity
         URL url = new URL("www.google.com");
         HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
         InputStream inputStream = httpURLConnection.getInputStream();
-        InputStreamReader reader = new InputStreamReader(inputStream);
+        InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
-        while(reader.read() != -1){
-            Log.d(TAG, String.valueOf(reader.read()));
-        }
+        String line = bufferedReader.readLine();
+
+
+//        URL url = new URL("www.google.com");
+//        HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+//        InputStream inputStream = httpURLConnection.getInputStream();
+//        InputStreamReader reader = new InputStreamReader(inputStream);
+//
+//        while(reader.read() != -1){
+//            Log.d(TAG, String.valueOf(reader.read()));
+//        }
 
     }
 
@@ -216,5 +246,66 @@ public class MainActivity extends AppCompatActivity
         else {
             getFragmentManager().popBackStack();
         }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Log.d(TAG, "onSaveInstanceState");
+        outState.putString("activeFragment", fragment.getTag());
+        if(fragment.getTag().equalsIgnoreCase("InstanceStateFragment"))
+            outState.putInt("fragmentIndex", 15);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    @Override
+    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
+        super.onSaveInstanceState(outState, outPersistentState);
+        Log.d(TAG, "onSaveInstanceState");
+        outState.putString("activeFragment", fragment.getTag());
+
+        outPersistentState.putString("activeFragment", fragment.getTag());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        Log.d(TAG, "onRestoreInstanceState");
+
+        if(savedInstanceState != null){
+            String activeFragment = savedInstanceState.getString("activeFragment");
+            if(activeFragment != null) {
+                switch (activeFragment) {
+                    case "InstanceStateFragment":
+                        fragment = new InstanceStateFragment();
+                        getSupportFragmentManager()
+                                .beginTransaction()
+                                .replace(R.id.container_body, fragment, fragment.getTag())
+                                .commit();
+                }
+            }
+
+        }
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState, PersistableBundle persistentState) {
+        super.onRestoreInstanceState(savedInstanceState, persistentState);
+        Log.d(TAG, "onRestoreInstanceState");
+        if(savedInstanceState != null){
+            String activeFragment = savedInstanceState.getString("activeFragment");
+            if(activeFragment != null) {
+                switch (activeFragment) {
+                    case "InstanceStateFragment":
+                        fragment = new InstanceStateFragment();
+                        getSupportFragmentManager()
+                                .beginTransaction()
+                                .replace(R.id.container_body, fragment, fragment.getTag())
+                                .commit();
+                }
+            }
+
+        }
+
     }
 }
