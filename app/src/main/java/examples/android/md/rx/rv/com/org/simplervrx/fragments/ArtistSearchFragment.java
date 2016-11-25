@@ -3,12 +3,40 @@ package examples.android.md.rx.rv.com.org.simplervrx.fragments;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
+import com.jakewharton.rxbinding.widget.RxTextView;
+
+import java.util.ArrayList;
+
+import javax.inject.Inject;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import examples.android.md.rx.rv.com.org.simplervrx.R;
+import examples.android.md.rx.rv.com.org.simplervrx.adapter.RVArtistSearchAdapter;
+import examples.android.md.rx.rv.com.org.simplervrx.daggerComponents.DaggerRetrofitComponent;
+import examples.android.md.rx.rv.com.org.simplervrx.daggerModules.RetrofitModule;
+import examples.android.md.rx.rv.com.org.simplervrx.model.ApiConstants;
+import examples.android.md.rx.rv.com.org.simplervrx.model.Item;
+import examples.android.md.rx.rv.com.org.simplervrx.model.SpotifyResult;
+import examples.android.md.rx.rv.com.org.simplervrx.rest.SpotifyApiService;
+import retrofit2.Retrofit;
+import rx.Observable;
+import rx.Scheduler;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+import rx.functions.Func1;
+import rx.schedulers.Schedulers;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,6 +48,18 @@ import examples.android.md.rx.rv.com.org.simplervrx.R;
  */
 public class ArtistSearchFragment extends Fragment {
     private static final String TAG = ArtistSearchFragment.class.getSimpleName();
+    private RVArtistSearchAdapter adapter;
+    private RecyclerView.LayoutManager layoutManager;
+
+    @BindView(R.id.mRecyclerViewArtist)
+    RecyclerView mRecyclerViewArtist;
+
+    @BindView(R.id.mEditTextSearch)
+    EditText mEditTextSearch;
+
+    @Inject
+    Retrofit retrofit;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -67,6 +107,63 @@ public class ArtistSearchFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_artist_search, container, false);
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        Log.d(TAG, "onViewCreated");
+
+        ButterKnife.bind(this, view);
+
+        //Dagger Initialization
+        DaggerRetrofitComponent.builder()
+                .retrofitModule(new RetrofitModule(ApiConstants.BASE_URL))
+                .build()
+                .inject(this);
+
+        SpotifyApiService spotifyApiService = retrofit.create(SpotifyApiService.class);
+
+        //RecyclerView Init
+        layoutManager = new LinearLayoutManager(getContext());
+        mRecyclerViewArtist.setLayoutManager(layoutManager);
+
+
+        RxTextView.textChanges(mEditTextSearch)
+                .subscribe(new Action1<CharSequence>() {
+                    @Override
+                    public void call(CharSequence charSequence) {
+                        Log.d(TAG, " - " + charSequence);
+                        Observable<SpotifyResult> spotifyResultObservable =  spotifyApiService
+                                .searchArtist(charSequence.toString());
+
+                        spotifyResultObservable
+                                .subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe(new Subscriber<SpotifyResult>() {
+                                    @Override
+                                    public void onCompleted() {
+                                        Log.d(TAG, "onCompleted");
+                                    }
+
+                                    @Override
+                                    public void onError(Throwable e) {
+                                        Log.d(TAG, "onError::" + e.getMessage());
+                                    }
+
+                                    @Override
+                                    public void onNext(SpotifyResult spotifyResult) {
+                                        Log.d(TAG, "onNext::" + spotifyResult.getArtists().getItems().size());
+                                        adapter = new RVArtistSearchAdapter((ArrayList<Item>) spotifyResult.getArtists().getItems(), getContext());
+                                        mRecyclerViewArtist.setAdapter(adapter);
+
+                                    }
+                                });
+
+
+                    }
+                });
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event

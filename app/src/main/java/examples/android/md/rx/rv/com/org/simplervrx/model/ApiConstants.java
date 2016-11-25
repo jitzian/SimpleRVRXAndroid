@@ -3,29 +3,17 @@ package examples.android.md.rx.rv.com.org.simplervrx.model;
 
 public class ApiConstants {
 
-    public static final String BASE_URL = "http://ws.audioscrobbler.com";
+    public static final String BASE_URL = "https://api.spotify.com";
 
-    public static final String PATH_VERSION = "/2.0";
+    public static final String VERSION_PATH = "/v1";
+    public static final String SEARCH_PATH = "/search";
 
-    public static final String PARAM_API_KEY = "api_key";
-    public static final String PARAM_METHOD = "method";
-    public static final String PARAM_FORMAT = "format";
-    public static final String PARAM_ARTIST = "artist";
+    public static final String TYPE_QUERY = "type";
+    public static final String QUERY_TO_SEARCH = "q";
 
-    public static final String VALUE_JSON = "json";
-    public static final String VALUE_HYPED_ARTISTS_METHOD = "chart.gethypedartists";
-    public static final String VALUE_TOP_ARTISTS_METHOD = "chart.gettopartists";
-    public static final String VALUE_ARTIST_INFO_METHOD = "artist.getinfo";
+    public static final String ARTIST = "artist";
 
-    public static final String URL_HYPED_ARTISTS = PATH_VERSION + "?"
-            + "&" + PARAM_FORMAT + "=" + VALUE_JSON
-            + "&" + PARAM_METHOD + "=" + VALUE_HYPED_ARTISTS_METHOD;
+    public static final String ARTIST_SEARCH_URL = VERSION_PATH + SEARCH_PATH + "?"+ TYPE_QUERY + "=" + ARTIST;
 
-    public static final String URL_ARTIST_INFO = PATH_VERSION + "?"
-            + "&" + PARAM_FORMAT + "=" + VALUE_JSON
-            + "&" + PARAM_METHOD + "=" + VALUE_ARTIST_INFO_METHOD;
-
-    public static final String URL_TOP_ARTIST = PATH_VERSION + "?"
-            + "&" + PARAM_FORMAT + "=" + VALUE_JSON
-            + "&" + PARAM_METHOD + "=" + VALUE_TOP_ARTISTS_METHOD;
+    //https://api.spotify.com/v1/search?q=linkin%20park&type=artist
 }

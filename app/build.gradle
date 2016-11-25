@@ -32,6 +32,7 @@ android {
 ext{
     versionSupportLibrary = "25.0.0"
     rxVersionLibrary = "0.4.0"
+    daggerVersionLibrary = "2.7"
 }
 
 dependencies {
@@ -73,6 +74,11 @@ dependencies {
     //Butterknife
     compile 'com.jakewharton:butterknife:8.4.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
+
+    //Dagger
+    compile "com.google.dagger:dagger:${daggerVersionLibrary}"
+    annotationProcessor "com.google.dagger:dagger-compiler:${daggerVersionLibrary}"
+
 
 }
 task taskSample{

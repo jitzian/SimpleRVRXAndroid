@@ -3,9 +3,9 @@ package examples.android.md.rx.rv.com.org.simplervrx.rest;
 import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import examples.android.md.rx.rv.com.org.simplervrx.model.Result;
+import examples.android.md.rx.rv.com.org.simplervrx.model.SpotifyResult;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -33,6 +33,12 @@ public class RetrofitHelper {
             Retrofit retrofit = create();
             RetrofitServices retrofitService = retrofit.create(RetrofitServices.class);
             return retrofitService.getGithubRepositories(user);
+        }
+        public static Observable<SpotifyResult>createSpotify(String qry){
+            Log.d(TAG, "Factory::create::qry::" + qry);
+            Retrofit retrofit = create();
+            SpotifyApiService spotifyApiService = retrofit.create(SpotifyApiService.class);
+            return spotifyApiService.searchArtist(qry);
         }
     }
 
